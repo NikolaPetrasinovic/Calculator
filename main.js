@@ -40,9 +40,17 @@ function addEvents(){
     cartQuantity_inputs.forEach((input) => {
         input.addEventListener("change", handle_changeItemQuantity);
     });
+
+    //dodavanje proizvoda u korpu
+    let addCart_btns = document.querySelectorAll(".add.cart");
+    addCart_btns.forEach(btn => {
+         btn.addEventListener("click", handle_addCartItem);
+    });
 }
 
-//handle funckije
+//------------------------handle funckije----------------------------
+
+
 function handle_removeCartItem(){
     this.parentElement.remove();
 
@@ -57,7 +65,7 @@ function handle_changeItemQuantity() {
     update();
 }
 
-//update i rerender funkcije
+//--------------------------update i rerender funkcije--------------------
 function updateTotal(){
     let cartBoxes = document.querySelectorAll(".cart-box");
     const totalElement = cart.querySelector(".total-price");
@@ -74,3 +82,4 @@ function updateTotal(){
 
     totalElement.innerHTML = "$" + total;
 }
+
