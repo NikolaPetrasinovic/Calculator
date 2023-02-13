@@ -78,7 +78,7 @@ header{
     position: fixed;
     top: 0;
     right: 0;
-    right: -100%;
+    /*right: -100%;*/
     width: 360px;
     height: 100vh;
     overflow-y: auto;
@@ -155,7 +155,8 @@ header{
 .btn-buy{
     display: flex;
     margin: 1.5rem, auto 0 auto;
-    padding: none;
+    padding: 12px 20px;
+    border: none;
     background-color: var(--sec-color);
     color: var(--bg-color);
     font-size: 1rem;
