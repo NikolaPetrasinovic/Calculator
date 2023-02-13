@@ -36,6 +36,10 @@ function addEvents(){
     });
 
     //promena kolicine proizvoda
+    let cartQuantity_inputs = document.querySelectorAll(".cart-quantity");
+    cartQuantity_inputs.forEach((input) => {
+        input.addEventListener("change", handle_changeItemQuantity);
+    });
 }
 
 //handle funckije
@@ -45,16 +49,28 @@ function handle_removeCartItem(){
     update();
 }
 
+function handle_changeItemQuantity() {
+    if(isNaN(this.value) || (this.value < 1)) {
+        this.value = 1;
+    }
+    this.value = Math.floor(this.value);  //zadrzavanje integera
+    update();
+}
+
 //update i rerender funkcije
 function updateTotal(){
-    let cartBoxes = document.querySelectorAll("cart-box");
+    let cartBoxes = document.querySelectorAll(".cart-box");
     const totalElement = cart.querySelector(".total-price");
     let total = 0;
-    cartBoxes.forEach((cartBoxe) => {
-        let priceElement = cartBox.querySelector("cart-price");
+    cartBoxes.forEach((cartBox) => {
+        let priceElement = cartBox.querySelector(".cart-price");
         let price = parseFloat(priceElement.innerHTML.replace("$", ""));
         let quantity = cartBox.querySelector(".cart-quantity").value;
         total += price * quantity;
     });
+
+    //da zadrzi 2 broja posle zareza
+    total = total.toFixed(2);
+
     totalElement.innerHTML = "$" + total;
 }
