@@ -43,9 +43,13 @@ function addEvents(){
 
     //dodavanje proizvoda u korpu
     let addCart_btns = document.querySelectorAll(".add.cart");
-    addCart_btns.forEach(btn => {
+    addCart_btns.forEach((btn) => {
          btn.addEventListener("click", handle_addCartItem);
     });
+
+    //buy order
+    const btn_buy = document.querySelector(".btn-buy");
+    buy_btn.addEventListener("click", handle_buyOrder);
 }
 
 //------------------------handle funckije----------------------------
@@ -53,6 +57,11 @@ function addEvents(){
 
 function handle_removeCartItem(){
     this.parentElement.remove();
+    itemsAdded = itemsAdded.filter(
+        (el) => 
+            el.title !=
+            this.parentElement.querySelector(".cart-product-title").innerHTML
+    );
     update();
 }
 
@@ -64,7 +73,50 @@ function handle_changeItemQuantity() {
     update();
 }
 
-//--------------------------update funkcije--------------------
+function handle_buyOrder() {
+    if(itemsAdded.length <= 0) {
+        alert("Ne postoji porudzbina ! \nMolim vas napravite porudzbinu.");
+        return;
+    }
+    const cartContent = cart.querySelector(".cart-content");
+    cartContent.innerHTML = "";
+    alert("Tvoja porudzbina je uspesna.");
+    let itemsAdded = [];
+    update();
+}
+
+let itemsAdded = [];
+function handle_addCartItem() {
+    let product = this.parentElement;
+    let title = product.querySelector(".product-title").innerHTML;
+    let price = product.querySelector(".product-price").innerHTML;
+    let imgSrc = product.querySelector(".product-img").src;
+    console.log(title, price, imgSrc);
+    let newToAdd = {
+        title,
+        price,
+        imgSrc,
+    };
+
+    //handle item is already exist
+    if(itemsAdded.find((el) => el.title == newToAdd.title)) {
+        alert("Proizvod vec postoji");
+        return;
+    } else {
+        itemsAdded.push(newToAdd);
+    }
+
+    //dodavanje proizvoda u korpu
+    let cartBoxElement = CartBoxComponent(title, price, imgSrc);
+    let newNode = document.createElement("div");
+    newNode.innerHTML = cartBoxElement;
+    const cartContent = cart.querySelector(".cart-content");
+    cartContent.appendChild(newNode);
+    update();
+
+}
+
+//--------------------------update funkcija--------------------
 function updateTotal(){
     let cartBoxes = document.querySelectorAll(".cart-box");
     const totalElement = cart.querySelector(".total-price");
