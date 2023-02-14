@@ -134,3 +134,16 @@ function updateTotal(){
     totalElement.innerHTML = "$" + total;
 }
 
+function CartBoxComponent(title, price, imgSrc) {
+    return `
+    <div class="cart-box">
+        <img src=${imgSrc} alt ="" class="cart-img">
+        <div class="detail-box">
+            <div class="cart-product-title">${title}</div>
+            <div class="cart-price">${price}</div>
+            <input type="number" value="1" class="cart-quantity">
+        </div>
+        <!--uklanjanje korpe-->
+        <i class='bx bxs-trash-alt cart-remove'></i>
+    </div>`;
+}
