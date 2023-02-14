@@ -42,13 +42,13 @@ function addEvents(){
     });
 
     //dodavanje proizvoda u korpu
-    let addCart_btns = document.querySelectorAll(".add.cart");
+    let addCart_btns = document.querySelectorAll(".add-cart");
     addCart_btns.forEach((btn) => {
          btn.addEventListener("click", handle_addCartItem);
     });
 
     //buy order
-    const btn_buy = document.querySelector(".btn-buy");
+    const buy_btn = document.querySelector(".btn-buy");
     buy_btn.addEventListener("click", handle_buyOrder);
 }
 
@@ -58,8 +58,8 @@ function addEvents(){
 function handle_removeCartItem(){
     this.parentElement.remove();
     itemsAdded = itemsAdded.filter(
-        (el) => 
-            el.title !=
+        (el) =>
+            el.title != 
             this.parentElement.querySelector(".cart-product-title").innerHTML
     );
     update();
@@ -73,20 +73,20 @@ function handle_changeItemQuantity() {
     update();
 }
 
-function handle_buyOrder() {
-    if(itemsAdded.length <= 0) {
-        alert("Ne postoji porudzbina ! \nMolim vas napravite porudzbinu.");
+function handle_buyOrder(){
+    if(itemsAdded.length <= 0){
+        alert("Ne postoji porudzbina! ! \nMolim vas napravite porduzbinu. ");
         return;
     }
     const cartContent = cart.querySelector(".cart-content");
     cartContent.innerHTML = "";
-    alert("Tvoja porudzbina je uspesna.");
-    let itemsAdded = [];
+    alert("Tvoja narudzbina je uspesna");
+    
     update();
 }
 
 let itemsAdded = [];
-function handle_addCartItem() {
+function handle_addCartItem(){
     let product = this.parentElement;
     let title = product.querySelector(".product-title").innerHTML;
     let price = product.querySelector(".product-price").innerHTML;
@@ -97,11 +97,10 @@ function handle_addCartItem() {
         price,
         imgSrc,
     };
-
     //handle item is already exist
     if(itemsAdded.find((el) => el.title == newToAdd.title)) {
         alert("Proizvod vec postoji");
-        return;
+        return ;
     } else {
         itemsAdded.push(newToAdd);
     }
@@ -113,10 +112,9 @@ function handle_addCartItem() {
     const cartContent = cart.querySelector(".cart-content");
     cartContent.appendChild(newNode);
     update();
-
 }
 
-//--------------------------update funkcija--------------------
+//--------------------------update i rerender funkcije--------------------
 function updateTotal(){
     let cartBoxes = document.querySelectorAll(".cart-box");
     const totalElement = cart.querySelector(".total-price");
@@ -134,15 +132,16 @@ function updateTotal(){
     totalElement.innerHTML = "$" + total;
 }
 
-function CartBoxComponent(title, price, imgSrc) {
+//-------------------------html komponente----------------------
+function CartBoxComponent(title, price, imgSrc){
     return `
     <div class="cart-box">
-        <img src=${imgSrc} alt ="" class="cart-img">
-        <div class="detail-box">
-            <div class="cart-product-title">${title}</div>
-            <div class="cart-price">${price}</div>
-            <input type="number" value="1" class="cart-quantity">
-        </div>
+            <img src=${imgSrc} alt ="" class="cart-img">
+            <div class="detail-box">
+                <div class="cart-product-title">${title}</div>
+                <div class="cart-price">${price}</div>
+                <input type="number" value="1" class="cart-quantity">
+            </div>
         <!--uklanjanje korpe-->
         <i class='bx bxs-trash-alt cart-remove'></i>
     </div>`;
