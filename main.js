@@ -53,7 +53,6 @@ function addEvents(){
 
 function handle_removeCartItem(){
     this.parentElement.remove();
-
     update();
 }
 
@@ -65,7 +64,7 @@ function handle_changeItemQuantity() {
     update();
 }
 
-//--------------------------update i rerender funkcije--------------------
+//--------------------------update funkcije--------------------
 function updateTotal(){
     let cartBoxes = document.querySelectorAll(".cart-box");
     const totalElement = cart.querySelector(".total-price");
