@@ -34,7 +34,7 @@ function addEvents(){
     console.log(cartRemove_btns);
     cartRemove_btns.forEach((btn) => {
         btn.addEventListener("click", handle_removeCartItem);
-        localStorage.setItem("itemsAdded", JSON.stringify(itemsAdded))
+        
     });
 
     //promena kolicine proizvoda
@@ -47,6 +47,7 @@ function addEvents(){
     let addCart_btns = document.querySelectorAll(".add-cart");
     addCart_btns.forEach((btn) => {
          btn.addEventListener("click", handle_addCartItem);
+  
     });
 
     //buy order
@@ -113,6 +114,7 @@ function handle_addCartItem(){
     newNode.innerHTML = cartBoxElement;
     const cartContent = cart.querySelector(".cart-content");
     cartContent.appendChild(newNode);
+    localStorage.setItem("itemsAdded", JSON.stringify(itemsAdded))
     update();
 }
 
