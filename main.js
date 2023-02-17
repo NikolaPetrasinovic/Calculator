@@ -2,6 +2,7 @@
 const cartIcon = document.querySelector("#cart-icon");
 const cart = document.querySelector(".cart");
 const closeCart = document.querySelector("#cart-close");
+const leadsFromLocalStorage = JSON.parse (localStorage.getItem("itemsAdded"))
 
 cartIcon.addEventListener('click', ()=>{
     cart.classList.add('active');
@@ -33,6 +34,7 @@ function addEvents(){
     console.log(cartRemove_btns);
     cartRemove_btns.forEach((btn) => {
         btn.addEventListener("click", handle_removeCartItem);
+        localStorage.setItem("itemsAdded", JSON.stringify(itemsAdded))
     });
 
     //promena kolicine proizvoda
