@@ -83,12 +83,12 @@ function handle_changeItemQuantity() {
 
 function handle_buyOrder(){
     if(itemsAdded.length <= 0){
-        alert("Ne postoji porudzbina! ! \nMolim vas napravite porduzbinu. ");
+        alert("There is no order! ! \nPlease make an order. ");
         return;
     }
     const cartContent = cart.querySelector(".cart-content");
     cartContent.innerHTML = "";
-    alert("Tvoja narudzbina je uspesna");
+    alert("Your order is successful");
    
     update();
 }
@@ -107,7 +107,7 @@ function handle_addCartItem(){
     };
     //handle item is already exist
     if(itemsAdded.find((el) => el.title == newToAdd.title)) {
-        alert("Proizvod vec postoji");
+        alert("Product is already exist");
         return ;
     } else {
         itemsAdded.push(newToAdd);
