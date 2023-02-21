@@ -179,6 +179,9 @@ header{
 .btn-buy:hover{
     background-color: var(--text-color);
 }
+.btn-delete:hover{
+    background-color: var(--text-color);
+}
 #cart-close{
     position: absolute;
     top: 1rem;
