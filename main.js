@@ -2,6 +2,13 @@
 const cartIcon = document.querySelector("#cart-icon");
 const cart = document.querySelector(".cart");
 const closeCart = document.querySelector("#cart-close");
+const leadsFromLocalStorage = JSON.parse (localStorage.getItem("itemsAdded"))
+
+const btn_delete = document.querySelector(".btn-delete")
+btn_delete.addEventListener("click", ()=> {
+    localStorage.removeItem("itemsAdded");
+});
+
 
 cartIcon.addEventListener('click', ()=>{
     cart.classList.add('active');
@@ -50,6 +57,7 @@ function addEvents(){
     //buy order
     const buy_btn = document.querySelector(".btn-buy");
     buy_btn.addEventListener("click", handle_buyOrder);
+    
 }
 
 //------------------------handle funckije----------------------------
@@ -81,7 +89,7 @@ function handle_buyOrder(){
     const cartContent = cart.querySelector(".cart-content");
     cartContent.innerHTML = "";
     alert("Tvoja narudzbina je uspesna");
-    
+   
     update();
 }
 
@@ -104,6 +112,7 @@ function handle_addCartItem(){
     } else {
         itemsAdded.push(newToAdd);
     }
+    localStorage.setItem("itemsAdded", JSON.stringify(itemsAdded))
 
     //dodavanje proizvoda u korpu
     let cartBoxElement = CartBoxComponent(title, price, imgSrc);

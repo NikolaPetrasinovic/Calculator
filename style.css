@@ -154,8 +154,20 @@ header{
     margin-left: .5rem;
 }
 .btn-buy{
-    display: flex;
+    display:table-column;
     margin: 1.5rem, auto 0 auto;
+    padding: 12px 20px;
+    border: none;
+    background-color: var(--sec-color);
+    color: var(--bg-color);
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+.btn-delete{
+    display: table-column;
+    margin: 1.5rem, auto 0 auto;
+    margin-left: 29px;
     padding: 12px 20px;
     border: none;
     background-color: var(--sec-color);
