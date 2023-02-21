@@ -269,6 +269,9 @@ header{
     .cart{
         width: 320px;
     }
+    .btn-delete{
+    margin-left: auto;
+    }
 }
 
 /*small devices*/
@@ -279,4 +282,5 @@ header{
     .cart{
         width: 280;
     }
+    
 }
